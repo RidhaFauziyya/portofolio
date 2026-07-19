@@ -19,7 +19,7 @@ const contacts = [
   {
     title: "LinkedIn",
     description: "Let's connect professionally.",
-    value: "linkedin.com/in/ridha",
+    value: "linkedin.com/in/ridha-fauziyya-rahma-bb1a49221",
     href: "https://www.linkedin.com/in/ridha-fauziyya-rahma-bb1a49221/",
     icon: "LinkedIn",
     action: "View Profile",
@@ -27,7 +27,7 @@ const contacts = [
   {
     title: "GitHub",
     description: "Explore my projects and source code.",
-    value: "github.com/ridha",
+    value: "github.com/RidhaFauziyya",
     href: "https://github.com/RidhaFauziyya",
     icon: "GitHub",
     action: "Visit GitHub",
