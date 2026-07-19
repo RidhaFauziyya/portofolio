@@ -15,7 +15,7 @@ const categories = [
   },
   {
     title: "Technical Education",
-    href: "/projects/teaching",
+    href: "/projects/education",
     description:
       "Python teaching materials, mentoring, and educational resources.",
   },

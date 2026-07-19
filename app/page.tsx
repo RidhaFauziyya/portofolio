@@ -57,7 +57,7 @@ export default function Home() {
             <FolderOpen size={20} />
             View Projects
           </a>
-          <a
+          {/* <a
             href="#"
             className="
               mt-10 inline-flex items-center gap-2
@@ -73,7 +73,7 @@ export default function Home() {
           >
             <FileText size={20} />
             My CV
-          </a>
+          </a> */}
         </div>
       </div>
 
@@ -130,14 +130,14 @@ export default function Home() {
         </p>
 
         <a
-          href="mailto:ridha@example.com"
+          href="mailto:ridhafauziyyar123@gmail.com"
           className="
       mt-10 inline-flex items-center gap-2
       rounded-xl
       bg-[#aea2c6]
       px-6 py-3
       font-medium
-      text-slate-900
+      text-white
       transition
       hover:scale-105
     "
@@ -145,20 +145,6 @@ export default function Home() {
           <Mail size={18} />
           Email Me
         </a>
-
-        <div className="mt-10 flex justify-center gap-4">
-          <a className="rounded-xl border border-white/10 bg-white/5 p-3 backdrop-blur transition hover:border-[#aea2c6]/50 hover:bg-white/10">
-            <Github size={20} />
-          </a>
-
-          <a className="rounded-xl border border-white/10 bg-white/5 p-3 backdrop-blur transition hover:border-[#aea2c6]/50 hover:bg-white/10">
-            <Linkedin size={20} />
-          </a>
-
-          <a className="rounded-xl border border-white/10 bg-white/5 p-3 backdrop-blur transition hover:border-[#aea2c6]/50 hover:bg-white/10">
-            <FileText size={20} />
-          </a>
-        </div>
       </section>
     </div>
   );

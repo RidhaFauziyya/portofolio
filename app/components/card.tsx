@@ -24,11 +24,11 @@ export const Card: React.FC<PropsWithChildren> = ({ children }) => {
     <div
       onMouseMove={onMouseMove}
       className="overflow-hidden relative duration-700 rounded-xl  group md:gap-8 bg-gradient-to-br
-from-[#26364b]/80
+from-[#5a5678]/80
 to-[#3b3552]/70
 backdrop-blur-md
-border border-white/10 hover:border-[#aea2c6]/40
-hover:shadow-[0_0_35px_rgba(174,162,198,.12)]"
+border border-white/10 hover:border-[#aea2c6]/60
+hover:shadow-[0_10px_40px_rgba(174,162,198,.18)]"
     >
       <div className="pointer-events-none">
         <div className="absolute inset-0 z-0  transition duration-1000 [mask-image:linear-gradient(black,transparent)]" />

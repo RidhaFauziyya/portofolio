@@ -1,63 +1,107 @@
 "use client";
-import { Github, Mail, Twitter } from "lucide-react";
+
 import Link from "next/link";
 import { Navigation } from "../components/nav";
-import { Card } from "../components/card";
+import { ArrowUpRight } from "lucide-react";
 
-const socials = [
-	{
-		icon: <Twitter size={20} />,
-		href: "https://twitter.com/chronark_",
-		label: "Twitter",
-		handle: "@chronark_",
-	},
-	{
-		icon: <Mail size={20} />,
-		href: "mailto:dev@chronark.com",
-		label: "Email",
-		handle: "dev@chronark.com",
-	},
-	{
-		icon: <Github size={20} />,
-		href: "https://github.com/chronark",
-		label: "Github",
-		handle: "chronark",
-	},
+import { Card } from "../components/card";
+import { TechIcons } from "../lib/techicon";
+
+const contacts = [
+  {
+    title: "Email",
+    description: "For job opportunities or collaborations.",
+    value: "ridhafauziyyar123@gmail.com",
+    href: "mailto:ridhafauziyyar123@gmail.com",
+    icon: "Email",
+    action: "Send Email",
+  },
+  {
+    title: "LinkedIn",
+    description: "Let's connect professionally.",
+    value: "linkedin.com/in/ridha",
+    href: "https://www.linkedin.com/in/ridha-fauziyya-rahma-bb1a49221/",
+    icon: "LinkedIn",
+    action: "View Profile",
+  },
+  {
+    title: "GitHub",
+    description: "Explore my projects and source code.",
+    value: "github.com/ridha",
+    href: "https://github.com/RidhaFauziyya",
+    icon: "GitHub",
+    action: "Visit GitHub",
+  },
+  {
+    title: "Resume",
+    description: "Download my latest resume.",
+    value: "PDF Resume",
+    href: "/#",
+    icon: "Resume",
+    action: "Download CV",
+  },
 ];
 
-export default function Example() {
-	return (
-		<div className=" bg-gradient-to-tl from-zinc-900/0 via-zinc-900 to-zinc-900/0">
-			<Navigation />
-			<div className="container flex items-center justify-center min-h-screen px-4 mx-auto">
-				<div className="grid w-full grid-cols-1 gap-8 mx-auto mt-32 sm:mt-0 sm:grid-cols-3 lg:gap-16">
-					{socials.map((s) => (
-						<Card>
-							<Link
-								href={s.href}
-								target="_blank"
-								className="p-4 relative flex flex-col items-center gap-4 duration-700 group md:gap-8 md:py-24  lg:pb-48  md:p-16"
-							>
-								<span
-									className="absolute w-px h-2/3 bg-gradient-to-b from-zinc-500 via-zinc-500/50 to-transparent"
-									aria-hidden="true"
-								/>
-								<span className="relative z-10 flex items-center justify-center w-12 h-12 text-sm duration-1000 border rounded-full text-zinc-200 group-hover:text-white group-hover:bg-zinc-900 border-zinc-500 bg-zinc-900 group-hover:border-zinc-200 drop-shadow-orange">
-									{s.icon}
-								</span>{" "}
-								<div className="z-10 flex flex-col items-center">
-									<span className="lg:text-xl font-medium duration-150 xl:text-3xl text-zinc-200 group-hover:text-white font-display">
-										{s.handle}
-									</span>
-									<span className="mt-4 text-sm text-center duration-1000 text-zinc-400 group-hover:text-zinc-200">
-										{s.label}
-									</span>
-								</div>
-							</Link>
-						</Card>
-					))}
-				</div>
-			</div>
-		</div>
-	);
+export default function ContactPage() {
+  return (
+    <main className="mx-auto max-w-6xl px-6 py-24">
+      <Navigation />
+      <section className="mx-auto max-w-3xl text-center">
+        <p className="text-sm uppercase tracking-[0.25em] text-[#aea2c6]">
+          Contact
+        </p>
+
+        <h1 className="mt-4 text-5xl font-bold text-white">
+          Let's Work Together
+        </h1>
+
+        <p className="mt-6 leading-8 text-zinc-400">
+          I'm currently open to Software QA, Manual Testing, Automation Testing,
+          and Web Development opportunities. Feel free to contact me if you'd
+          like to discuss a project, collaboration, or job opportunity.
+        </p>
+      </section>
+
+      <section className="mt-20 grid gap-8 md:grid-cols-2">
+        {contacts.map((contact) => {
+          const Icon = TechIcons[contact.icon];
+
+          return (
+            <Card key={contact.title}>
+              <div className="relative z-20 flex h-full flex-col p-8">
+                <div className="mb-8 flex h-14 w-14 items-center justify-center rounded-xl bg-[#aea2c6]/10">
+                  <Icon size={28} className="text-[#aea2c6]" />
+                </div>
+
+                <h2 className="text-2xl font-semibold text-white">
+                  {contact.title}
+                </h2>
+
+                <p className="mt-3 text-zinc-400">{contact.description}</p>
+
+                <p className="mt-8 break-all text-white">{contact.value}</p>
+
+                <Link
+                  href={contact.href}
+                  target="_blank"
+                  className="group mt-8 inline-flex items-center gap-2 text-[#aea2c6] transition"
+                >
+                  {contact.action}
+
+                  <ArrowUpRight
+                    size={18}
+                    className="transition group-hover:translate-x-1 group-hover:-translate-y-1"
+                  />
+                </Link>
+              </div>
+            </Card>
+          );
+        })}
+      </section>
+
+      <footer className="mt-24 text-center">
+        <p className="text-zinc-500">Thanks for visiting my portfolio.</p>
+      </footer>
+    </main>
+  );
 }
