@@ -1,39 +1,55 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+import { ArrowLeft } from "lucide-react";
 import { notFound } from "next/navigation";
-import { allProjects } from "contentlayer/generated";
-import { Mdx } from "@/app/components/mdx";
-import { Header } from "./header";
-import "./mdx.css";
-import { ReportView } from "./view";
-import { Redis } from "@upstash/redis";
+import { getProject } from "app/lib/project";
+import ProjectHero from "app/components/projecthero";
+import ProjectRenderer from "app/components/projectrender";
 
-export const dynamic = "force-dynamic";
-
-type Props = {
+interface Props {
   params: {
     slug: string;
   };
-};
+}
 
-export default async function PostPage({ params }: Props) {
-  const slug = params?.slug;
-  const project = allProjects.find((project) => project.slug === slug);
+export default function ProjectPage({ params }: Props) {
+  const project = getProject(params.slug);
+  const router = useRouter();
 
   if (!project) {
     notFound();
   }
 
-  const redis = Redis.fromEnv();
-  const views =
-    (await redis.get<number>(["pageviews", "projects", slug].join(":"))) ?? 0;
-
   return (
-    <div className="bg-zinc-50 min-h-screen">
-      <Header project={project} views={views} />
-      <ReportView slug={project.slug} />
+    <div className="mt-40 w-full lg:w-4/5 mx-auto overflow-hidden">
+      <button
+        onClick={() => router.back()}
+        className="
+        mb-8
+        flex
+        items-center
+        gap-2
+        rounded-xl
+        border
+        border-white/10
+        bg-white/5
+        px-4
+        py-2
+        text-sm
+        text-zinc-300
+        backdrop-blur
+        transition
+        hover:border-[#aea2c6]/50
+        hover:text-white
+      "
+      >
+        <ArrowLeft size={16} />
+        Back
+      </button>
+      <ProjectHero project={project} />
 
-      <article className="px-4 py-12 mx-auto prose prose-zinc prose-quoteless">
-        <Mdx code={project.body.code} />
-      </article>
+      <ProjectRenderer project={project} />
     </div>
   );
 }

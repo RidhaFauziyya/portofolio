@@ -4,7 +4,19 @@
 
 @layer base {
   .text-edge-outline {
-    -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
   }
-} 
+}
 
+body {
+  margin: 1rem auto;
+  width: 70%;
+  min-height: 100vh;
+}
+.bg-body {
+  background: linear-gradient(135deg, #2e3148, #5a5678, #a497b9);
+}
+
+html {
+  scroll-behavior: smooth;
+}

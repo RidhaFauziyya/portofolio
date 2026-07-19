@@ -1,55 +1,37 @@
 "use client";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Home as HomeIcon } from "lucide-react";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 
+const navigation = [
+  { name: "About", href: "/about" },
+  { name: "Projects", href: "/projects" },
+  { name: "Contact", href: "/contact" },
+];
+
 export const Navigation: React.FC = () => {
-	const ref = useRef<HTMLElement>(null);
-	const [isIntersecting, setIntersecting] = useState(true);
+  return (
+    <nav className="fixed top-6 left-1/2 z-50 -translate-x-1/2 flex justify-center animate-fade-in">
+      <div className="flex items-center rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl px-3 py-2 shadow-xl">
+        <Link
+          href="/"
+          className="rounded-xl p-3 text-white transition hover:bg-white/10"
+        >
+          <HomeIcon size={18} />
+        </Link>
 
-	useEffect(() => {
-		if (!ref.current) return;
-		const observer = new IntersectionObserver(([entry]) =>
-			setIntersecting(entry.isIntersecting),
-		);
+        <div className="mx-2 h-6 w-px bg-white/10" />
 
-		observer.observe(ref.current);
-		return () => observer.disconnect();
-	}, []);
-
-	return (
-		<header ref={ref}>
-			<div
-				className={`fixed inset-x-0 top-0 z-50 backdrop-blur  duration-200 border-b  ${
-					isIntersecting
-						? "bg-zinc-900/0 border-transparent"
-						: "bg-zinc-900/500  border-zinc-800 "
-				}`}
-			>
-				<div className="container flex flex-row-reverse items-center justify-between p-6 mx-auto">
-					<div className="flex justify-between gap-8">
-						<Link
-							href="/projects"
-							className="duration-200 text-zinc-400 hover:text-zinc-100"
-						>
-							Projects
-						</Link>
-						<Link
-							href="/contact"
-							className="duration-200 text-zinc-400 hover:text-zinc-100"
-						>
-							Contact
-						</Link>
-					</div>
-
-					<Link
-						href="/"
-						className="duration-200 text-zinc-300 hover:text-zinc-100"
-					>
-						<ArrowLeft className="w-6 h-6 " />
-					</Link>
-				</div>
-			</div>
-		</header>
-	);
+        {navigation.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className="rounded-xl px-4 py-2 text-sm text-zinc-200 transition-all duration-300 hover:bg-[#aea2c6]/20 hover:text-white"
+          >
+            {item.name}
+          </Link>
+        ))}
+      </div>
+    </nav>
+  );
 };
